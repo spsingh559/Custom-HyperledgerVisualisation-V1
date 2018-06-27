@@ -1,0 +1,27 @@
+
+
+ 
+ .background{
+  background-image: url("../images/loginBG.gif");
+  position: relative;
+  height: 650px;
+  color: white;
+ overflow: hidden;
+ background-repeat: repeat;
+  /*background-color: GHOSTWHITE;*/
+  /*opacity:0.5;*/
+
+}
+.txbackground{
+  background-color: #68686A;
+  position: relative;
+  height: 2000px;
+  color: white;
+ overflow: hidden;
+ background-repeat: no-repeat;
+  /*background-color: GHOSTWHITE;*/
+  /*opacity:0.5;*/
+
+}
+
+ 

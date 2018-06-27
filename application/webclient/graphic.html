@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>04. Listen to mouse events. Vivagraph SVG tutorial.</title>
+    <script type="text/javascript" src="./dist/vivagraph.js"></script>
+
+    <!--
+    This example uses jQuery, but it's only for convenience of listenting
+    to DOM events. The jQuery can be replaced with your favorite library.
+     -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        function main () {
+//             // As in previous steps, we create a basic structure of a graph:
+//             var graph = Viva.Graph.graph();
+//             // graph.addNode('uniper');
+//             graph.addNode('uniper','91bad8ceeec43ae303790f8fe238164b');
+// graph.addNode('manunt', 'https://secure.gravatar.com/avatar/c81bfc2cf23958504617dd4fada3afa8');
+// graph.addNode('thlorenz', {url : 'https://secure.gravatar.com/avatar/1c9054d6242bffd5fd25ec652a2b79cc'});
+// graph.addNode('customer', {url : 'https://secure.gravatar.com/avatar/24a5b6e62e9a486743a71e0a0a4f71af'});
+// graph.addNode('diyan', {url : 'https://secure.gravatar.com/avatar/01bce7702975191fdc402565bd1045a8?'});
+// graph.addNode('pocheptsov', {url : 'https://secure.gravatar.com/avatar/13da974fc9716b42f5d62e3c8056c718'});
+// graph.addNode('dimapasko', {url : 'https://secure.gravatar.com/avatar/8e587a4232502a9f1ca14e2810e3c3dd'});
+
+// graph.addLink('uniper', 'manunt');
+// graph.addLink('uniper', 'thlorenz');
+// graph.addLink('uniper', 'bling');
+// graph.addLink('uniper', 'diyan');
+// graph.addLink('uniper', 'pocheptsov');
+// graph.addLink('uniper', 'dimapasko');
+
+//             var graphics = Viva.Graph.View.svgGraphics(),
+//                 nodeSize = 50,
+//                 // we use this method to highlight all realted links
+//                 // when user hovers mouse over a node:
+//                 highlightRelatedNodes = function(nodeId, isOn) {
+//                    // just enumerate all realted nodes and update link color:
+//                    graph.forEachLinkedNode(nodeId, function(node, link){
+//                        var linkUI = graphics.getLinkUI(link.id);
+//                        if (linkUI) {
+//                            // linkUI is a UI object created by graphics below
+//                            linkUI.attr('stroke', isOn ? 'red' : 'gray');
+//                        }
+//                    });
+//                 };
+//             // Since we are using SVG we can easily subscribe to any supported
+//             // events (http://www.w3.org/TR/SVG/interact.html#SVGEvents ),
+//             // including mouse events:
+//             graphics.node(function(node) {
+//                 var ui = Viva.Graph.svg('image')
+//                      .attr('width', nodeSize)
+//                      .attr('height', nodeSize)
+//                      .link('https://secure.gravatar.com/avatar/' + node.data);
+//                 $(ui).hover(function() { // mouse over
+//                     highlightRelatedNodes(node.id, true);
+//                 }, function() { // mouse out
+//                     highlightRelatedNodes(node.id, false);
+//                 });
+//                 return ui;
+//             }).placeNode(function(nodeUI, pos) {
+//                 nodeUI.attr('x', pos.x - nodeSize / 2).attr('y', pos.y - nodeSize / 2);
+//             });
+//             graphics.link(function(link){
+//                 return Viva.Graph.svg('path')
+//                               .attr('stroke', 'gray');
+//             }).placeLink(function(linkUI, fromPos, toPos) {
+//                 var data = 'M' + fromPos.x + ',' + fromPos.y +
+//                            'L' + toPos.x + ',' + toPos.y;
+//                 linkUI.attr("d", data);
+//             })
+//             // Finally render the graph with our customized graphics object:
+//             var renderer = Viva.Graph.View.renderer(graph, {
+//                     graphics : graphics
+//                 });
+//             renderer.run();
+var graph = Viva.Graph.graph();
+
+// Construct the graph
+graph.addNode('uniper', {url : './images/uniper.png'});
+graph.addNode('transport', {url : './images/transport.jpg'});
+graph.addNode('supplier', {url : './images/supplier.png'});
+graph.addNode('customer', {url : './images/customer.jpg'});
+// graph.addNode('diyan', {url : 'https://secure.gravatar.com/avatar/01bce7702975191fdc402565bd1045a8?'});
+// graph.addNode('pocheptsov', {url : 'https://secure.gravatar.com/avatar/13da974fc9716b42f5d62e3c8056c718'});
+// graph.addNode('dimapasko', {url : 'https://secure.gravatar.com/avatar/8e587a4232502a9f1ca14e2810e3c3dd'});
+graph.addNode('1',{url:'./images/node.png'});
+graph.addNode('2',{url:'./images/node.png'});
+graph.addNode('3',{url:'./images/node.png'});
+
+graph.addNode('4',{url:'./images/node.png'});
+graph.addNode('5',{url:'./images/node.png'});
+graph.addNode('6',{url:'./images/node.png'});
+
+graph.addNode('7',{url:'./images/node.png'});
+graph.addNode('8',{url:'./images/node.png'});
+graph.addNode('9',{url:'./images/node.png'});
+
+graph.addNode('10',{url:'./images/node.png'});
+graph.addNode('11',{url:'./images/node.png'});
+graph.addNode('12',{url:'./images/node.png'});
+graph.addNode('13',{url:'./images/orderer.jpg'});
+
+
+graph.addLink('uniper', 'transport');
+graph.addLink('1', '13');
+// graph.addLink('13', '1');
+// graph.addLink('13', '4');
+// graph.addLink('13', '7');
+// graph.addLink('13', '10');
+graph.addLink('transport', '7');
+graph.addLink('7', '8');
+graph.addLink('7', '9');
+graph.addLink('uniper', '1');
+graph.addLink('1', '2');
+graph.addLink('1', '3');
+graph.addLink('uniper', 'supplier');
+graph.addLink('supplier', '4');
+graph.addLink('4', '5');
+graph.addLink('4', '6');
+// graph.addLink('transport', '1');
+// graph.addLink('manunt', '2');
+// graph.addLink('manunt', '3');
+graph.addLink('uniper', 'customer');
+// graph.addLink('supplier', '1');
+// graph.addLink('thlorenz', '2');
+// graph.addLink('thlorenz', '3');
+
+graph.addLink('customer', '10');
+graph.addLink('10', '11');
+graph.addLink('10', '12');
+// graph.addLink('uniper', 'diyan');
+// graph.addLink('uniper', 'pocheptsov');
+// graph.addLink('uniper', 'dimapasko');
+var graphics = Viva.Graph.View.svgGraphics(),
+                nodeSize = 50,
+                // we use this method to highlight all realted links
+                // when user hovers mouse over a node:
+                highlightRelatedNodes = function(nodeId, isOn) {
+                   // just enumerate all realted nodes and update link color:
+                   graph.forEachLinkedNode(nodeId, function(node, link){
+                       var linkUI = graphics.getLinkUI(link.id);
+                       if (linkUI) {
+                           // linkUI is a UI object created by graphics below
+                           linkUI.attr('stroke', isOn ? 'red' : 'gray');
+                       }
+                   });
+                };
+            // Since we are using SVG we can easily subscribe to any supported
+            // events (http://www.w3.org/TR/SVG/interact.html#SVGEvents ),
+            // including mouse events:
+            graphics.node(function(node) {
+                var ui = Viva.Graph.svg('image')
+                     .attr('width', nodeSize)
+                     .attr('height', nodeSize)
+                     .link(node.data.url);
+                $(ui).hover(function() { // mouse over
+                    highlightRelatedNodes(node.id, true);
+                }, function() { // mouse out
+                    highlightRelatedNodes(node.id, false);
+                });
+                return ui;
+            }).placeNode(function(nodeUI, pos) {
+                nodeUI.attr('x', pos.x - nodeSize / 2).attr('y', pos.y - nodeSize / 2);
+            });
+            graphics.link(function(link){
+                return Viva.Graph.svg('path')
+                              .attr('stroke', 'gray');
+            }).placeLink(function(linkUI, fromPos, toPos) {
+                var data = 'M' + fromPos.x + ',' + fromPos.y +
+                           'L' + toPos.x + ',' + toPos.y;
+                linkUI.attr("d", data);
+            })
+            // Finally render the graph with our customized graphics object:
+            var renderer = Viva.Graph.View.renderer(graph, {
+                    graphics : graphics
+                });
+            renderer.run();
+
+
+// // Set custom nodes appearance
+// var graphics = Viva.Graph.View.svgGraphics();
+// graphics.node(function(node) {
+//        // The function is called every time renderer needs a ui to display node
+//        return Viva.Graph.svg('image')
+//              .attr('width', 50)
+//              .attr('height', 50) 
+//              .link(node.data.url); // node.data holds custom object passed to graph.addNode();
+//     })
+//     .placeNode(function(nodeUI, pos){
+//         // Shift image to let links go to the center:
+//         nodeUI.attr('x', pos.x - 12).attr('y', pos.y - 12);
+//     });
+
+// var renderer = Viva.Graph.View.renderer(graph, {
+//         graphics : graphics
+//     });
+//     $('.zoom').click(function (e) {
+//                     e.preventDefault();
+//                     if ($(this).hasClass('in')) {
+//                         renderer.zoomIn();
+//                     } else {
+//                         renderer.zoomOut();
+//                     }
+//                 });
+// renderer.run();
+        }
+    </script>
+
+    <style type="text/css" media="screen">
+        html, body, svg { width: 100%; height: 100%; background-color: black}
+    </style>
+</head>
+<body onload='main()'>
+<div>
+        <center>
+    <h1 style="color :white">
+            Uniper Network Visuals
+            </h1>
+            <center>
+
+                <h4>
+
+                
+        <a href="/"  style="color :white; right: 0px">
+                Back
+        </a>
+    </h4>
+ 
+    
+</div>
+</body>
+</html>
